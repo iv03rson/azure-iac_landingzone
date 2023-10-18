@@ -29,48 +29,6 @@ resource "azurerm_key_vault_access_policy" "kv_accesspolicy" {
 }
 
 #------------------------------------------------------------------------------------------- 
-# Key vault Diagnostic settings
-#------------------------------------------------------------------------------------------- 
-resource "azurerm_monitor_diagnostic_setting" "key_vault" {
-  for_each                       = var.key_vault_diagnostics
-  name                           = each.key
-  target_resource_id             = azurerm_key_vault.key_vault[each.value.key_vault_name].id
-  eventhub_name                  = each.value["eventhub_name"]
-  eventhub_authorization_rule_id = each.value["eventhub_authorization_rule_id"]
-  log_analytics_workspace_id     = azurerm_log_analytics_workspace.log_analytics_workspace[each.value.log_analytics_workspace].id
-  log_analytics_destination_type = "AzureDiagnostics"
-
-  log {
-    category = "AuditEvent"
-    enabled  = each.value["enable_auditevent_log"]
-
-    retention_policy {
-      enabled = true
-      days    = 30
-    }
-  }
-
-  log {
-    category = "AzurePolicyEvaluationDetails"
-    enabled  = each.value["enable_azurepolicyevaluationdetails_log"]
-
-    retention_policy {
-      enabled = true
-      days    = 30
-    }
-  }
-
-  metric {
-    category = "AllMetrics"
-
-    retention_policy {
-      enabled = true
-      days    = 30
-    }
-  }
-}
-
-#------------------------------------------------------------------------------------------- 
 # Private Endpoints and DNS zone links
 #------------------------------------------------------------------------------------------- 
 resource "azurerm_private_endpoint" "keyvault_private_endpoint" {
