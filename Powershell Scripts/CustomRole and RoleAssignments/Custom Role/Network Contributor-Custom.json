@@ -1,0 +1,21 @@
+{
+    "Name": "Network Contributor-Custom",
+    "IsCustom": true,
+    "Description": "Let the Network Service Principal manage networks, but not access to them.",
+    "Actions": [
+        "Microsoft.Authorization/*/read",
+        "Microsoft.Insights/alertRules/*",
+        "Microsoft.Network/*",
+        "Microsoft.ResourceHealth/availabilityStatuses/read",
+        "Microsoft.Resources/deployments/*",
+        "Microsoft.Resources/subscriptions/resourceGroups/read",
+        "Microsoft.Support/*",
+        "Microsoft.Storage/*"
+    ],
+    "NotActions": [],
+    "DataActions": [],
+    "NotDataActions": [],
+    "AssignableScopes": [
+          "/"
+    ]
+}

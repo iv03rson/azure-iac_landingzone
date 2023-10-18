@@ -1,0 +1,24 @@
+{
+    "Name": "Contributor-Restricted",
+    "IsCustom": true,
+    "Description": "Lets you manage all resources, join resources to the network, but not create RBAC roles or manage networking resources.",
+    "Actions": [
+        "*"
+    ],
+    "NotActions": [
+                    "Microsoft.Authorization/*/Delete",
+                    "Microsoft.Authorization/*/Write",
+                    "Microsoft.Authorization/elevateAccess/Action",
+                    "Microsoft.Blueprint/blueprintAssignments/write",
+                    "Microsoft.Blueprint/blueprintAssignments/delete",
+                    "Microsoft.Compute/galleries/share/action",
+                    "Microsoft.Purview/consents/write",
+                    "Microsoft.Purview/consents/delete",
+                    "Microsoft.Network/*/write"
+    ],
+    "DataActions": [],
+    "NotDataActions": [],
+    "AssignableScopes": [
+          "/"
+    ]
+}
